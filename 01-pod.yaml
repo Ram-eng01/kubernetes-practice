@@ -1,0 +1,19 @@
+## kubectl run mypod --image=nginx  ---> imparative way to create pod
+## kubectl get pods or kubectl get pod or kubectl get po ---> to see list of pods
+## kubectl api-resources ---> to see list of resource
+
+
+#### declarative sysntax ######
+
+---
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx-cont 
+      image: shaikmustafa/dm
+      ports:
+        - containerPort: 80
+
