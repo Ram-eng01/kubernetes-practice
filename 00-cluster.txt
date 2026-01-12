@@ -1,0 +1,54 @@
+curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops
+sudo mv kops /usr/local/bin/kops
+kops version
+
+aws s3 ls
+
+
+aws s3 mb s3://ram855.kops
+
+export KOPS_STATE_STORE=s3://ram855.kops
+
+
+kops create cluster --name ram.k8s.local --zones=ap-south-2a,ap-south-2b --master-count=1 --master-size=t3.large --master-volume-size=30 --node-count=2 --node-size=t3.medium --node-volume-size=20 --image=ami-0bd4cda58efa33d23
+
+kubectl get no
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+chmod +x kubectl 
+mv kubectl /usr/local/bin/
+kubectl version
+
+
+
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster ram.k8s.local
+ * edit your node instance group: kops edit ig --name=ram.k8s.local nodes-us-east-1a
+ * edit your control-plane instance group: kops edit ig --name=ram.k8s.local control-plane-us-east-1a
+
+Finally configure your cluster with: kops update cluster --name ram.k8s.local --yes --admin / kops update cluster --name rammohan.k8s.local --yes --admin
+
+
+kops create cluster --name rammohan.k8s.local --zones=us-east-1a,us-east-1b --control-plane-count=1 --control-plane-size=m7i-flex.large --control-plane-volume-size=30 --node-count=2 --node-size=c7i-flex.large --node-volume-size=20 --image=ami-0360c520857e3138f
+
+
+----
+to delete cluster:
+export KOPS_STATE_STORE=s3://ram855.kops
+
+kops get cluster
+kops delete cluster --name rammohan.k8s.local --yes
+
+
+
+
+
+
+
+
+
+
+
+
