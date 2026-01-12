@@ -1,3 +1,9 @@
+## kubectl get hpa
+## kubectl exec -it <pod_name> -- bash
+## apt install stress -y --> install inside pod
+## stress -c 2 -t 300 -v --> inside pod
+
+
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
