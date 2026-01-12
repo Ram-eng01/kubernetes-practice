@@ -1,6 +1,7 @@
 ## kubectl get rs
 ## kubectl describe rs <rs_name>
-
+## kubectl scale rs <rs_name> --replicas=5
+## kubectl delete rs <rs_name>
 
 
 ---
@@ -20,7 +21,7 @@ spec:
     spec:
       containers:
         - name: cont-1
-          image: shaikmustafa/dm
+          image: shaikmustafa/paytm:bus
           ports:
             - containerPort: 80
 
