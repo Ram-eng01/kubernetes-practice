@@ -8,4 +8,4 @@ spec:
     - name: nginx-c 
       image: kkeducationb2/java-webapp:1.1
       ports:
-        containerPort: 8080
+        - containerPort: 8080
