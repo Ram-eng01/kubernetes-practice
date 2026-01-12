@@ -25,10 +25,10 @@ spec:
 
 
 ### node selector ###
-## node selector is used to select a perticular node to create a pod
+## node selector is used to select a perticular node to create our pod
 ## kubectl get no
 ## kubectl label node <node_id> node=node1
-## 
+## kubectl get po -o wide 
 
 
 
@@ -48,4 +48,4 @@ spec:
     - name: nginx-c 
       image: shaikmustafa/dm
       ports:
-        - containerPort: 8080
+        - containerPort: 80
