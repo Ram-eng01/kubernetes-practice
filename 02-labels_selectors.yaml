@@ -1,8 +1,15 @@
+## kubectl get po --show-labels
+
+
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-pod
+  labels:
+    app: java
+    env: dev
+    client: TCS
 spec:
   containers:
     - name: nginx-c 
