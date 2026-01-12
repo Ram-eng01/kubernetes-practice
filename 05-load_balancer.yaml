@@ -7,7 +7,7 @@ metadata:
     env: dev
 spec:
   containers:
-    - name: cont-1
+    - name: cont-2
       image: shaikmustafa/dm
       ports:
         - containerPort: 80
