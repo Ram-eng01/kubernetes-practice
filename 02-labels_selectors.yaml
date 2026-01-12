@@ -1,5 +1,10 @@
 ## kubectl get po --show-labels
+## kubectl label pod <pod_name> "kubernates=true" --> to add labels to pod
+## kubectl label pod <pod_name> app=nginx env=test company=infosys ---> to add multiple labels to pod
 
+## kubectl get po -l app=java --> equality based selector
+## kubectl get po -l env!=test
+## kubectl get po -l 'env in (dev,pod)' --> set based selector
 
 ---
 apiVersion: v1
@@ -14,5 +19,33 @@ spec:
   containers:
     - name: nginx-c 
       image: kkeducationb2/java-webapp:1.1
+      ports:
+        - containerPort: 8080
+
+
+
+### node selector ###
+## node selector is used to select a perticular node to create a pod
+## kubectl get no
+## kubectl label node <node_id> node=node1
+## 
+
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector
+  labels:
+    app: java
+    env: node
+    client: TCS
+spec:
+  nodeSelector:
+    node: node1
+  containers:
+    - name: nginx-c 
+      image: shaikmustafa/dm
       ports:
         - containerPort: 8080
