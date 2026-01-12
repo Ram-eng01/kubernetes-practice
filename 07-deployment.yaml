@@ -1,8 +1,10 @@
 ## kubectl get deploy
 ## kubectl scale deploy <deployment_name> --replicas=5
-
-
-
+## kubectl set image deploy <deployment_name> <container_name=image_name>
+## kubectl rollout status deploy <deployment_name>
+## kubectl rollout undo deploy <deployment_name> --to-revision=1
+## kubectl rollout history deploy <deployment_name>
+## kubectl annotate deployment/<deplyment_name> kubernetes.io/change-cause="rollback to previous versions"
 
 ---
 apiVersion: apps/v1
