@@ -1,6 +1,13 @@
 ## kubectl run mypod --image=nginx  ---> imparative way to create pod
 ## kubectl get pods or kubectl get pod or kubectl get po ---> to see list of pods
 ## kubectl api-resources ---> to see list of resource
+## kubectl get po -o wide ---> to get pod ip add and node details
+## kubectl get po -o yaml
+## kubectl get po -o json
+## kubectl describe pod <pod_name>
+## kubectl delete pod <pod_name>
+## kubectl delete pod --all  ----> to delete all pods
+## kubect create -f <file_name>
 
 
 #### declarative sysntax ######
