@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pod-Service
+  name: pod-service
 spec:
   type: ClusterIP
   selector:
