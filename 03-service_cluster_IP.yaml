@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: pod-1
+  labels:
+    app: paytm
+    env: dev
+spec:
+  containers:
+    - name: cont-1
+      image: shaikmustafa/dm
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-1-Service
+spec:
+  type: ClusterIP
+  selector:
+    app: paytm
+    env: dev
+  ports:
+    port: 80
+    targetPort: 80
