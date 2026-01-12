@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: javawebapp
+  name: javawebapp-1
   labels:
     app: javawebapp
 spec:
