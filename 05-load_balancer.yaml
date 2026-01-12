@@ -1,7 +1,8 @@
+---
 apiVersion: v1
 kind: Pod 
 metadata:
-  name: pod-2
+  name: pod-3
   labels:
     app: paytm
     env: dev
@@ -15,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-  name: loadsvc
+  name: my-svc
 spec:
   type: LoadBalancer
   selector: 
