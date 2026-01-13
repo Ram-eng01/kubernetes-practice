@@ -1,0 +1,11 @@
+## kubectl get ns
+## kubectl get po -n <namespace_name>
+## kubectl get all -n <namespace_name> --> to get all
+## kubectl create ns stage
+
+---
+apiVersion: v1 
+kind: Namespace 
+metadata:
+  name: stagging
+  
