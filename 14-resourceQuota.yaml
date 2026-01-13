@@ -1,6 +1,5 @@
 ## kubectl get quota -n <namespace_name>
-
-
+## kubectl describe pod <pod-name> -n <name_space>                       
 
 ---
 apiVersion: v1
