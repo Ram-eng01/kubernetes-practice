@@ -13,7 +13,7 @@ spec:
       labels:
         app: statefulset
     spec:
-      conatiners:
+      containers:
         - name: state-cont 
           image: shaikmustafa/dm 
           ports:
