@@ -1,0 +1,42 @@
+## kubectl get quota -n <namespace_name>
+
+
+
+---
+apiVersion: v1
+kind: Namespace 
+metadata: 
+  name: food
+
+---
+apiVersion: v1 
+kind: ResourceQuota 
+metadata: 
+  name: food-rq 
+  namespace: food 
+spec:
+  hard: 
+    requests.cpu: "500m"
+    limits.cpu: "1000m"
+    requests.memory: "500Mi"
+    limits.memory: "1000Mi" 
+
+---
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: rq-pod 
+  namespace: food
+spec:
+  containers:
+    - name: cont-1
+      image: shaikmustafa/dm 
+      ports:
+        containerPort: 80
+      resources:
+        requests: 
+          cpu: "100m" 
+          memory: "250Mi"
+        limits: 
+          cpu: "150m" 
+          memory: "500Mi"
