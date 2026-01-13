@@ -1,5 +1,14 @@
+## kubectl get cm
+## kubectl describe cm <cm_name>
+## kubectl create cm cm2 --from-literal="Name=Rammohan" --from-literal="Course=Java" --from-literal="Place=OWK"  ---> imparative way to create cm
+## create .env file with nam app.env with key=values >> eg: app=dev  place=hyd
+## kubectl create cm <cm_name> --from-env-file=app.env  ---> imparative way
 
-
+#####
+## we can attach a complete cm to a pod
+## we can attach multiple cm
+## we can attach a spec values from a cm to pod
+## we can attach a diff values from diff cm to a pod
 
 ---
 apiVersion: v1
@@ -11,3 +20,20 @@ data:
   DB_NAME: "mysql"
   COURSE: "DevOps"
   CLOUD: "AWS"
+
+---
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: ex-pod
+spec:
+  containers:
+    - name: cont-1
+      image: nginx 
+      ports: 
+        - containerPort: 80
+      envFrom:
+        - configMapRef:
+            name: cm1
+        - configMapRef:
+            name: cm2   
