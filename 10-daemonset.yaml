@@ -1,3 +1,6 @@
+## kubectl get ds
+
+
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -17,3 +20,40 @@ spec:
           image: shaikmustafa/game
           ports:
             - containerPort: 80
+
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: prometheus-daemonset
+spec:
+  selector:
+    matchLabels:
+      tier: monitoring
+      name: prometheus-exporter
+  template:
+    metadata:
+      labels:
+        tier: monitoring
+        name: prometheus-exporter
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/node-exporter
+        ports:
+        - containerPort: 9100
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-svc-np 
+spec:
+  type: NodePort
+  selector:
+    tier: monitoring
+    name: prometheus-exporter
+  ports:
+    - port: 80
+      targetPort: 9100
+      nodePort: 31004 
