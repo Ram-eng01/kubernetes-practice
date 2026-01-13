@@ -16,4 +16,4 @@ spec:
         - name: daemon-cont 
           image: shaikmustafa/game
           ports:
-            containerPort: 80
+            - containerPort: 80
