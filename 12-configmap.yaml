@@ -11,7 +11,7 @@
 ##3 we can attach a diff values from diff cm to a pod
 
 ---
-## example 1 & 2
+
 apiVersion: v1
 kind: ConfigMap
 metadata: 
@@ -23,6 +23,7 @@ data:
   CLOUD: "AWS"
 
 ---
+## example 1 & 2
 apiVersion: v1 
 kind: Pod 
 metadata:
@@ -41,6 +42,7 @@ spec:
 
 
 ---
+## example 3 & 4
 apiVersion: v1 
 kind: Pod 
 metadata:
