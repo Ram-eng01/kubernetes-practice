@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ex-daemonset 
+spec:
+  selector:
+    matchLabels:
+      app: daemonapp
+  template:
+    metadata:
+      labels:
+        app: daemonapp
+    spec:
+      containers:
+        - name: daemon-cont 
+          image: shaikmustafa/game
+          ports:
+            containerPort: 80
