@@ -5,12 +5,13 @@
 ## kubectl create cm <cm_name> --from-env-file=app.env  ---> imparative way
 
 #####
-## we can attach a complete cm to a pod
-## we can attach multiple cm
-## we can attach a spec values from a cm to pod
-## we can attach a diff values from diff cm to a pod
+##1 we can attach a complete cm to a pod
+##2 we can attach multiple cm
+##3 we can attach a spec values from a cm to pod
+##3 we can attach a diff values from diff cm to a pod
 
 ---
+## example 1 & 2
 apiVersion: v1
 kind: ConfigMap
 metadata: 
@@ -37,3 +38,32 @@ spec:
             name: cm1
         - configMapRef:
             name: cm2   
+
+
+---
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: ex-pod-1
+spec:
+  containers:
+    - name: cont-1
+      image: shaikmustafa/dm 
+      ports: 
+        - containerPort: 80
+      env: 
+        - name: mycloud
+          valueFrom:
+            configMapKeyRef:
+              key: CLOUD 
+              name: cm1 
+        - name: myportsql
+          valueFrom:
+            configMapKeyRef:
+              key: PORT
+              name: cm1 
+        - name: mycource
+          valueFrom: 
+            configMapKeyRef:
+              name: cm2
+              key: Course 
