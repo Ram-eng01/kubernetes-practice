@@ -32,7 +32,7 @@ spec:
     - name: cont-1
       image: shaikmustafa/dm 
       ports:
-        containerPort: 80
+        - containerPort: 80
       resources:
         requests: 
           cpu: "100m" 
