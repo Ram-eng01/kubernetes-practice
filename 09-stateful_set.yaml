@@ -1,3 +1,8 @@
+## kubectl get statefulset
+## kubectl scale satetfulset <satefulset_name> --replicas=7
+
+
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -31,5 +36,5 @@ spec:
     app: statefulset
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
       nodePort: 30084
