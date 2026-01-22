@@ -71,7 +71,7 @@ spec:
       app: client-pod
   policyTypes:
     - Ingress
-  Ingress:
+  ingress:
     - from:
       - podSelector:
           matchLabels:
