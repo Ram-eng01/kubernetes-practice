@@ -1,0 +1,35 @@
+## HostPath: a Volume that mounts a file or directory from the host Node’s filesystem into the Pod.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostpath-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostapp
+  template:
+    metadata:
+      labels:
+        app: hostapp
+    spec:
+      containers:
+        - name: cont-1
+          image: nginx
+          volumeMounts:
+            - name: aws
+              mountPath: "/tmp/devops"
+        
+        - name: cont-2
+          image: nginx
+          command: ["/bin/bash", "-c" , "while true ; do echo this is k8s ; sleep 5 ; done"]
+          volumeMounts:
+            - name: aws
+              mountPath: "tmp/aws"
+
+      volumes:
+        - name: aws
+          hostPath:
+            path: "/tmp/mydata"
