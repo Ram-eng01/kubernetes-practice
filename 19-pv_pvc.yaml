@@ -1,0 +1,65 @@
+## PersistentVolume (PV): It is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using StorageClasses. It is a resource in the cluster, just like a Node, and exists independently of any Pod.
+
+## PersistentVolumeClaim (PVC): It is a request for storage by a user. It specifies details such as the size and access mode needed. Once a PVC is created, Kubernetes binds it to a suitable PersistentVolume to meet the storage requirements.
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: pv-1
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  awsElasticBlockStore:
+    volumeID: vol-040271d3c1f16186f
+    fsType: ext4
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pv-pvc-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      labels:
+        app: swiggy
+    spec:
+      containers:
+      - name: cont-1
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo Welcome to DevOps class; sleep 10; done"]
+        volumeMounts:
+        - mountPath: "/tmp/jenkins"
+          name: devops
+      - name: cont-1
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo Welcome to DevOps class; sleep 10; done"]
+        volumeMounts:
+        - mountPath: "/tmp/docker"
+          name: devops
+      volumes:
+      - name: devops
+        persistentVolumeClaim:
+          claimName: pvc-1
