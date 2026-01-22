@@ -88,11 +88,24 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: swiggy # source
+      app: swiggy # This policy applies to SWIGGY pod
   policyTypes:
     - Egress
   egress:
     - to:
       - podSelector:
           matchLabels:
-            app: client-pod  # allow only swiggy
+            app: client-pod  # only client-pod allowd
+
+---
+## deny other pods to communicate
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: denyall
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+    
