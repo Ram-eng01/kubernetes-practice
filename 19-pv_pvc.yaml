@@ -53,7 +53,7 @@ spec:
         volumeMounts:
         - mountPath: "/tmp/jenkins"
           name: devops
-      - name: cont-1
+      - name: cont-2
         image: ubuntu
         command: ["/bin/bash", "-c", "while true; do echo Welcome to DevOps class; sleep 10; done"]
         volumeMounts:
