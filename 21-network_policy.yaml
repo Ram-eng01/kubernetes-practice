@@ -1,5 +1,7 @@
 ## I have 4 pods swiggy, zomato , uber , client and only swiggy pod need to communicate with client POd
 
+## swiggy doesnt communicate with other pods
+
 ## kubectl get netpol
 ## kubectl exec -it <pod_name> -c <cont_name> -- ping <ipaddress>
 ---
@@ -68,11 +70,29 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: client-pod
+      app: client-pod  # Target pod
   policyTypes:
     - Ingress
   ingress:
     - from:
       - podSelector:
           matchLabels:
-            app: swiggy
+            app: swiggy  # allow only swiggy
+
+---
+## allow-swiggy-egress-to-client
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-swiggy-egress-to-clinet
+spec:
+  podSelector:
+    matchLabels:
+      app: swiggy # source
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            app: client-pod  # allow only swiggy
