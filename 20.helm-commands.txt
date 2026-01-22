@@ -1,0 +1,28 @@
+Helm in k8s
+===========
+Helm is a package manager for Kubernetes applications that helps you define, install, and manage Kubernetes applications similar to yum/apt for linux distributions. 
+
+
+1) helm create rammohan
+   cd rammohan
+2) helm install ram .
+3) helm list
+   change image
+4) helm upgrade ram .
+5) helm list
+
+6) helm history ram
+7) helm rollback ram 1 
+8) helm uninstall ram 
+
+9) helm lint <chartName> --> for validation
+
+10) helm package ram  --> to create a tar file
+
+11) helm repo index . 
+
+12) helm repo add myrelease https://devops0014.github.io/mynewhwlm
+   
+    helm repo list
+    helm install ram myrelease/devops
+    helm get  all

@@ -1,0 +1,59 @@
+## I have 4 pods swiggy, zomato , uber , client and only swiggy pod need to communicate with client POd
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: swiggy
+  labels:
+    app: swiggy
+spec:
+  conatiners:
+    - name: cont-1
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zomato
+  labels:
+    app: zomato
+spec:
+  conatiners:
+    - name: cont-1
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: uber
+  labels:
+    app: uber
+spec:
+  conatiners:
+    - name: cont-1
+      image: nginx
+      ports:
+        - containerPort: 80
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod
+  labels:
+    app: client-pod
+spec:
+  conatiners:
+    - name: cont-1
+      image: nginx
+      ports:
+        - containerPort: 80
