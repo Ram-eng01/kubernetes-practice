@@ -1,0 +1,33 @@
+## EmptyDir: a temporary Volume that is created when a Pod is assigned to a Node and is deleted when the Pod is removed.
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empty-dir-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      labels:
+        app: swiggy
+    spec:
+      containers:
+        - name: cont-1
+          image: nginx
+          volumeMounts:
+            - mountPath: "/tmp/jenkins"
+              name: devops
+        - name: cont-2
+          image: nginx
+          command: ["/bin/bash", "-c", "while true; do echo this is k8s; sleep 5; done"]
+          volumeMounts:
+            - name: devops
+              mountPath: "/tmp/docker"
+
+      volumes:
+        - name: devops
+          emptyDir: {}
