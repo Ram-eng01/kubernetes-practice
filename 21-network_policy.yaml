@@ -9,7 +9,7 @@ metadata:
   labels:
     app: swiggy
 spec:
-  continers:
+  containers:
     - name: cont-1
       image: nginx
       ports:
@@ -23,7 +23,7 @@ metadata:
   labels:
     app: zomato
 spec:
-  continers:
+  containers:
     - name: cont-1
       image: nginx
       ports:
@@ -37,7 +37,7 @@ metadata:
   labels:
     app: uber
 spec:
-  continers:
+  containers:
     - name: cont-1
       image: nginx
       ports:
@@ -52,7 +52,7 @@ metadata:
   labels:
     app: client-pod
 spec:
-  continers:
+  containers:
     - name: cont-1
       image: nginx
       ports:
