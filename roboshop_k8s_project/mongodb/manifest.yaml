@@ -36,7 +36,6 @@ metadata:
   name: mongodb
   namespace: roboshop
 spec:
-  type: ClusterIP
   selector:
     project: roboshop
     component: mongodb
@@ -44,4 +43,4 @@ spec:
   ports:
     - port: 27017  # service port
       targetPort: 27017  # container port
-      protocal: TCP
+      
