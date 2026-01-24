@@ -24,20 +24,20 @@ spec:
       project: roboshop
       component: catalogue
       tier: backend
-    template:
-      metadata:
-        labels:
-          project: roboshop
-          component: catalogue
-          tier: backend
-      spec:
-        containers:
-          - name: catalogue-cont 
-            image: joindevops/catalogue:v1 
-            imagePullPolicy: Always
-            envFrom:
-              - configMapRef:
-                  name: catalogue
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: catalogue
+        tier: backend
+    spec:
+      containers:
+        - name: catalogue-cont 
+          image: joindevops/catalogue:v1 
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: catalogue
 
 ---
 apiVersion: v1
@@ -54,4 +54,4 @@ spec:
   ports:
     - port: 8080 # service port
       targetPort: 8080  # container port
-      protocal: TCP
+      
