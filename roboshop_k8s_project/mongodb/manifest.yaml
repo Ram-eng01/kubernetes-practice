@@ -14,17 +14,17 @@ spec:
       project: roboshop
       component: mongodb
       tier: db
-    template:
-      metadata:
-        labels:
-          project: roboshop
-          component: mongodb
-          tier: db
-      spec:
-        containers:
-          - name: mongodb-cont 
-            image: joindevops/mongodb:v1 
-            imagePullPolicy: Always
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: mongodb
+        tier: db
+    spec:
+      containers:
+        - name: mongodb-cont 
+          image: joindevops/mongodb:v1 
+          imagePullPolicy: Always
             
                 
 
