@@ -10,7 +10,7 @@ spec:
       template:
         spec:
           restartPolicy: Never
-          container:
+          containers:
             - name: cont-1
               image: ubuntu
               command: ["/bin/bash", "-c", "sudo apt update -y; sleep 30"]
