@@ -1,4 +1,8 @@
+## cerate EFS filesystem
+## edit the security group, so that it will allow port 2049 form worker nodes -- efs security group
+## we should have drivers installed efs drivers
 
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
