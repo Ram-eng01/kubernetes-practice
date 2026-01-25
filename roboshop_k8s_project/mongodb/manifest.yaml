@@ -25,6 +25,8 @@ spec:
         - name: mongodb-cont 
           image: joindevops/mongodb:v1 
           imagePullPolicy: Always
+          ports:
+            - containerPort: 27017
             
                 
 

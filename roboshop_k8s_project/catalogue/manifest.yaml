@@ -35,6 +35,8 @@ spec:
         - name: catalogue-cont 
           image: joindevops/catalogue:v1 
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: catalogue
