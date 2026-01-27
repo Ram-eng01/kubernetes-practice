@@ -38,7 +38,7 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
           - name: rabbitmq-pvc
-            mountPath: /var/ib/rabbitmq
+            mountPath: /var/lib/rabbitmq
   voumeClaimTemplates:
     - metadata:
         name: rabbitmq-pvc
