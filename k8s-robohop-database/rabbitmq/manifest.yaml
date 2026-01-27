@@ -1,7 +1,7 @@
 # statefulset, pvc , headless service 
 
 apiVersion: apps/v1
-kind: SatefulSet
+kind: StatefulSet
 metadata:
   name: rabbitmq
   namespace: roboshop
