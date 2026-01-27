@@ -40,7 +40,7 @@ spec:
         tier: db
     spec:
       containers:
-        - name: mysql-cont 
+        - name: mysql 
           image: joindevops/mysql:v1
           envFrom:
             - configMapRef:
