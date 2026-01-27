@@ -8,7 +8,7 @@ metadata:
   namespace: roboshop
 spec:
   replicas: 2
-  serviceName: "mongodb-headless"
+  serviceName: "mongodb"
   selector:
     matchLabels:
       project: roboshop
@@ -38,27 +38,27 @@ spec:
           requests:
             storage: 1Gi
         
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb
-  namespace: roboshop
-spec:
-  selector:
-    project: roboshop
-    component: mongodb
-    tier: db
-  ports:
-    - protocol: TCP
-      port: 27017 # service port
-      targetPort: 27017 # container port
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mongodb
+#   namespace: roboshop
+# spec:
+#   selector:
+#     project: roboshop
+#     component: mongodb
+#     tier: db
+#   ports:
+#     - protocol: TCP
+#       port: 27017 # service port
+#       targetPort: 27017 # container port
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-headless
+  name: mongodb
   namespace: roboshop 
 spec:
   clusterIP: None

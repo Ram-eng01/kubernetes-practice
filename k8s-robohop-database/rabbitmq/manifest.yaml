@@ -12,7 +12,7 @@ metadata:
     tier: db
 spec:
   replicas: 2
-  serviceName: "rabbitmq-headless"
+  serviceName: "rabbitmq"
   selector:
     # these labels are used to select pods
     matchLabels:
@@ -52,7 +52,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rabbitmq-headless
+  name: rabbitmq
   namespace: roboshop
 spec:
   clusterIP: None
@@ -65,18 +65,3 @@ spec:
       port: 5672 # service port
       targetPort: 5672 # container port
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rabbitmq
-  namespace: roboshop
-spec:
-  selector:
-    project: roboshop
-    component: rabbitmq
-    tier: db
-  ports:
-    - protocol: TCP
-      port: 5672 # service port
-      targetPort: 5672 # container port
