@@ -39,7 +39,7 @@ spec:
         volumeMounts:
           - name: rabbitmq-pvc
             mountPath: /var/lib/rabbitmq
-  voumeClaimTemplates:
+  volumeClaimTemplates:
     - metadata:
         name: rabbitmq-pvc
       spec:
