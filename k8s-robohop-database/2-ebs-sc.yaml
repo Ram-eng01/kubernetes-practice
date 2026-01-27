@@ -3,6 +3,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: roboshop-ebs
-reclaimPolicy: Retain
+reclaimPolicy: delete
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
