@@ -1,4 +1,3 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,23 +6,15 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: nginx
-
   rules:
-    - host: roboshop.dev
-      http:
+    - http:
         paths:
-          - path: /(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
 
-          - path: /users/(.*)
+          # USERS
+          - path: /users/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -31,7 +22,8 @@ spec:
                 port:
                   number: 8080
 
-          - path: /catalogue/(.*)
+          # CATALOGUE
+          - path: /catalogue/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -39,7 +31,8 @@ spec:
                 port:
                   number: 8080
 
-          - path: /cart/(.*)
+          # CART
+          - path: /cart/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -47,7 +40,8 @@ spec:
                 port:
                   number: 8080
 
-          - path: /shipping/(.*)
+          # SHIPPING
+          - path: /shipping/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
@@ -55,10 +49,20 @@ spec:
                 port:
                   number: 8080
 
-          - path: /payment/(.*)
+          # PAYMENT
+          - path: /payment/?(.*)
             pathType: ImplementationSpecific
             backend:
               service:
                 name: payment
                 port:
                   number: 8080
+
+          # FRONTEND (catch-all MUST BE LAST)
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
