@@ -6,7 +6,8 @@ metadata:
   namespace: roboshop
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
 
@@ -15,7 +16,7 @@ spec:
       http:
         paths:
           - path: /(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: frontend
@@ -23,7 +24,7 @@ spec:
                   number: 80
 
           - path: /users/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: user
@@ -31,7 +32,7 @@ spec:
                   number: 8080
 
           - path: /catalogue/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: catalogue
@@ -39,7 +40,7 @@ spec:
                   number: 8080
 
           - path: /cart/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: cart
@@ -47,7 +48,7 @@ spec:
                   number: 8080
 
           - path: /shipping/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: shipping
@@ -55,7 +56,7 @@ spec:
                   number: 8080
 
           - path: /payment/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: payment
