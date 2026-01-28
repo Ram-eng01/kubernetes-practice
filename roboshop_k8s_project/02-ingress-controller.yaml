@@ -56,13 +56,4 @@ spec:
               service:
                 name: payment
                 port:
-                  number: 8080
-
-          # FRONTEND (catch-all MUST BE LAST)
-          - path: /(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: frontend
-                port:
                   number: 80
