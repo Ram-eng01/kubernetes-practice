@@ -1,3 +1,8 @@
+#Labels are key-value pairs attached to Kubernetes objects (Pods, Nodes, Services, etc.) that are used to identify and organize resources.
+#A Selector is a query that filters Kubernetes objects based on their labels.
+
+
+
 ## kubectl get po --show-labels
 ## kubectl label pod <pod_name> "kubernates=true" --> to add labels to pod
 ## kubectl label pod <pod_name> app=nginx env=test company=infosys ---> to add multiple labels to pod
