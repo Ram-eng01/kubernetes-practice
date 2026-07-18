@@ -40,3 +40,96 @@ spec:
     - port: 80
       targetPort: 80
       nodePort: 30008
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  namespace: default
+  labels:                              # Labels ON the Deployment object
+    app: web
+    env: production
+    version: "2.0"
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    description: "Production web server deployment"
+
+spec:
+  replicas: 3                          # Desired number of Pod replicas
+
+  # ── Selector ──────────────────────────────────────────────
+  selector:
+    matchLabels:
+      app: web                         # Must match template labels
+    matchExpressions:                  # Optional: set-based
+    - key: env
+      operator: In
+      values: [production, staging]
+
+  # ── Update Strategy ───────────────────────────────────────
+  strategy:
+    type: RollingUpdate                # RollingUpdate | Recreate
+    rollingUpdate:
+      maxSurge: 1                      # Max pods ABOVE desired during update
+      maxUnavailable: 0                # Max pods BELOW desired during update
+
+  # ── Revision History ──────────────────────────────────────
+  revisionHistoryLimit: 10             # Number of old ReplicaSets to keep (default: 10)
+
+  # ── Min Ready Seconds ─────────────────────────────────────
+  minReadySeconds: 5                   # Pod must be ready for N seconds before considered available
+
+  # ── Progress Deadline ─────────────────────────────────────
+  progressDeadlineSeconds: 600         # Seconds before deployment is considered failed (default: 600)
+
+  # ── Pod Template ──────────────────────────────────────────
+  template:
+    metadata:
+      labels:
+        app: web                       # Must match selector
+        env: production
+        version: "2.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.25              # Always pin image tag!
+        imagePullPolicy: IfNotPresent
+
+        ports:
+        - name: http
+          containerPort: 80
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+
+        env:
+        - name: APP_ENV
+          value: "production"
+
+        readinessProbe:                # IMPORTANT for rolling updates
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
+
+      restartPolicy: Always            # Must be Always for Deployments
+      terminationGracePeriodSeconds: 30
