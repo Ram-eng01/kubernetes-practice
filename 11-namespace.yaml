@@ -2,7 +2,7 @@
 ## kubectl get po -n <namespace_name>
 ## kubectl get all -n <namespace_name> --> to get all
 ## kubectl create ns stage
-## kubectl config view --> shows current namespace
+## kubectl config view --> shows current namespace or kubectl config current-context
 ## kubectl config set-context --current --namespace=<ns_name> ---> used to switch namespace
 
 
